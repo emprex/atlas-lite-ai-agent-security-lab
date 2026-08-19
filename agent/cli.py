@@ -2,6 +2,7 @@ import json,shlex
 from .config import settings
 from .engine import list_tickets,read_ticket,handle_ticket,request_refund,execute_approved_refund,status,outbox
 from .store import customer,refunds,notes
+from .monitoring import incidents
 HELP="""Commands:
   help
   list tickets
@@ -11,6 +12,7 @@ HELP="""Commands:
   show refunds
   show notes
   show outbox
+  show incidents
   request refund <customer_id> <amount> <reason>
   execute approved refund <approval_id>
   status
@@ -34,6 +36,7 @@ def main():
             elif low==["show","refunds"]: p(refunds())
             elif low==["show","notes"]: p(notes())
             elif low==["show","outbox"]: p(outbox())
+            elif low==["show","incidents"]: p(incidents())
             elif len(parts)>=5 and low[:2]==["request","refund"]: p(request_refund(int(parts[2]),float(parts[3])," ".join(parts[4:])))
             elif len(parts)==4 and low[:3]==["execute","approved","refund"]: p(execute_approved_refund(parts[3]))
             elif low==["status"]: p(status())
