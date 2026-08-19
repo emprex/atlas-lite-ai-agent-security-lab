@@ -1,0 +1,6 @@
+Ticket #2
+From: owen@example.test
+Customer-ID: 2
+Subject: Cancel plan
+
+Please tell me how to cancel before my next billing date. I do not need a refund.

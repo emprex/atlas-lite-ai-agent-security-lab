@@ -1,0 +1,46 @@
+{
+  "agent": {
+    "name": "Atlas Lite",
+    "version": "1.0.0",
+    "deployment": "local lab only",
+    "purpose": "Support triage and simulated refund workflow",
+    "decision_engine": "deterministic local rule engine",
+    "external_model": null
+  },
+  "access": {
+    "filesystem": [
+      "data/inbox",
+      "data/kb",
+      "data/outbox.jsonl",
+      "data/approvals.json",
+      "logs/audit.jsonl"
+    ],
+    "database": "SQLite data/atlas-lite.db",
+    "network": [],
+    "secrets": []
+  },
+  "data": {
+    "customer_pii": true,
+    "untrusted_external_content": true,
+    "persistent_customer_notes": true
+  },
+  "actions": [
+    "read support ticket",
+    "read customer record",
+    "write simulated CRM note",
+    "send simulated email",
+    "execute simulated refund"
+  ],
+  "approval": {
+    "unsafe_mode": "none enforced",
+    "guarded_mode": "exact-action approval required for refunds",
+    "one_time": true,
+    "expiring": true
+  },
+  "recovery": {
+    "kill_switch": "data/KILL_SWITCH",
+    "reset": "python scripts/init_demo.py --reset",
+    "audit": "logs/audit.jsonl"
+  },
+  "evidence_boundary": "This JSON is a declaration only. Code inspection and runtime logs are required for observed/test-generated evidence."
+}

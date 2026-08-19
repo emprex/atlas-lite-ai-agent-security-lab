@@ -1,0 +1,23 @@
+# Python
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# Local environment
+.env
+
+# Generated runtime state
+logs/*.jsonl
+data/*.db
+data/outbox.jsonl
+data/approvals.json
+data/KILL_SWITCH
+
+# Evidence archives
+evidence/
+*.tgz
+
+# OS/editor noise
+.DS_Store
+*.swp
