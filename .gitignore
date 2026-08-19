@@ -12,6 +12,8 @@ logs/*.jsonl
 data/*.db
 data/outbox.jsonl
 data/approvals.json
+data/security-baseline.json
+data/security-lifecycle.jsonl
 data/KILL_SWITCH
 
 # Evidence archives

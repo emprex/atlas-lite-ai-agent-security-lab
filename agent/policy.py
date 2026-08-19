@@ -2,6 +2,7 @@ from dataclasses import dataclass
 from .config import DATA, settings
 from .approval import create, consume
 from .audit import emit
+from .lifecycle import status as lifecycle_status
 
 SIDE_EFFECTS={"send_email","write_customer_note","execute_refund"}
 @dataclass
@@ -17,6 +18,10 @@ def authorize(tool,args,approval_id=None):
         emit("policy.allowed",tool=tool,args=args,reason="unsafe_mode"); return Decision(True,"Unsafe mode")
     if tool not in SIDE_EFFECTS:
         emit("policy.denied",tool=tool,args=args,reason="not_allowlisted"); return Decision(False,"Tool not allowlisted")
+    lifecycle=lifecycle_status()
+    if lifecycle["reassessment_required"]:
+        emit("policy.denied",tool=tool,args=args,reason="security_reassessment_required",changed_files=lifecycle["changed_files"])
+        return Decision(False,"Security reassessment required")
     if tool=="execute_refund":
         try:
             canonical={"customer_id":int(args["customer_id"]),"amount":round(float(args["amount"]),2),"reason":str(args["reason"])}
