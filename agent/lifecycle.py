@@ -15,6 +15,8 @@ MATERIAL_FILES = (
     "agent/policy.py",
     "agent/approval.py",
     "agent/monitoring.py",
+    "agent/lifecycle.py",
+    "agent/audit.py",
     "agent/engine.py",
     "agent/actions.py",
     "agent/config.py",
