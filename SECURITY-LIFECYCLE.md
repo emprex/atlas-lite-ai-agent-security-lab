@@ -1,6 +1,6 @@
 # Atlas Lite security lifecycle gate
 
-Atlas Lite treats changes to security-relevant authority, approval, monitoring, execution, configuration and agent-profile files as material changes.
+Atlas Lite treats changes to security-relevant authority, approval, monitoring, lifecycle, audit, execution, configuration and agent-profile files as material changes.
 
 ## Material files
 
@@ -9,6 +9,8 @@ The executable gate tracks:
 - `agent/policy.py`
 - `agent/approval.py`
 - `agent/monitoring.py`
+- `agent/lifecycle.py`
+- `agent/audit.py`
 - `agent/engine.py`
 - `agent/actions.py`
 - `agent/config.py`
